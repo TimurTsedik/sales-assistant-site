@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Sales Assistant</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1a1c1e;
+    --muted: #5b6167;
+    --rule: #e2e5e9;
+    --accent: #1f6feb;
+    --chip: #f2f4f7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14161a;
+      --fg: #e6e8ea;
+      --muted: #a0a7ae;
+      --rule: #2a2e34;
+      --accent: #6ea8fe;
+      --chip: #1e2228;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 44rem; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  header { border-bottom: 1px solid var(--rule); padding-bottom: 1.25rem; margin-bottom: 2rem; }
+  .product { font-size: .9rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 .35rem; }
+  h1 { font-size: 1.85rem; line-height: 1.25; margin: 0 0 .75rem; }
+  .updated { color: var(--muted); font-size: .95rem; margin: 0; }
+  .langs { display: flex; gap: .5rem; margin-top: 1.25rem; }
+  .langs button {
+    font: inherit; font-size: .95rem; cursor: pointer;
+    padding: .35rem .9rem; border-radius: 999px;
+    border: 1px solid var(--rule); background: transparent; color: var(--muted);
+  }
+  .langs button[aria-pressed="true"] { background: var(--chip); color: var(--fg); border-color: transparent; font-weight: 600; }
+  h2 { font-size: 1.25rem; margin: 2.25rem 0 .6rem; }
+  p, li { color: var(--fg); }
+  ul { padding-left: 1.2rem; }
+  li { margin-bottom: .5rem; }
+  strong { font-weight: 600; }
+  a { color: var(--accent); }
+  .lead { font-size: 1.05rem; }
+  footer { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .9rem; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="product">Sales Assistant</p>
+  <h1 data-t="title">Privacy Policy</h1>
+  <p class="updated" data-t="updated">Last updated: 22 July 2026</p>
+  <div class="langs">
+    <button type="button" data-lang="en" aria-pressed="true">English</button>
+    <button type="button" data-lang="ru" aria-pressed="false">Русский</button>
+  </div>
+</header>
+
+<main id="en">
+  <h2>In short</h2>
+  <p class="lead">Sales Assistant is a personal assistant for working with clients.
+  <strong>Everything you keep in the app stays on your phone.</strong> We do not send your
+  data to any server, collect no analytics, show no ads, and share nothing with third
+  parties. There is no server for this data to go to.</p>
+
+  <h2>What the app stores on your phone</h2>
+  <ul>
+    <li><strong>Client contacts</strong> — names and numbers you enter manually or pick
+    from your phone contacts.</li>
+    <li><strong>Interaction history</strong> — notes, reminders, and your voice call
+    summaries.</li>
+    <li><strong>Call recordings</strong> — the app <strong>does not record calls
+    itself</strong>. It locates recordings already made by your phone's built-in recorder,
+    in a folder you choose, and shows them in the client's card.</li>
+    <li><strong>Transcripts</strong> — text the app produces from recordings, entirely on
+    the phone.</li>
+    <li><strong>WhatsApp messages</strong> — if you grant notification access, the app
+    saves incoming message text from a client, but <strong>only after you link that chat
+    to a specific client</strong>. Until a chat is linked, message text is stored nowhere —
+    only the chat's name and identifier remain in the database.</li>
+  </ul>
+
+  <h2>Why the permissions are needed</h2>
+  <ul>
+    <li><strong>Notification access</strong> — so WhatsApp messages reach the client's
+    card. The app parses only WhatsApp notifications, only to tell who wrote. Other
+    notifications are not read.</li>
+    <li><strong>Phone state</strong> — to offer dictating a summary after a call. The app
+    only sees that a call started and ended; neither the other party's number nor the call
+    audio is read.</li>
+    <li><strong>Microphone</strong> — only when you tap "dictate a summary".</li>
+    <li><strong>Folder access</strong> — only to the recordings folder you selected; the
+    app does not see other files on the phone.</li>
+    <li><strong>Internet</strong> — used <strong>once</strong>, to download the
+    speech-recognition model. This request carries nothing about you — it only downloads
+    the model file. Your recordings, transcripts, and messages <strong>never</strong> use
+    the internet.</li>
+  </ul>
+
+  <h2>Do we share data</h2>
+  <p>No. Data never leaves the phone, is not shared with third parties, is not sold, and
+  is not used for advertising. There are no analytics or trackers in the app.</p>
+
+  <h2>WhatsApp</h2>
+  <p>The app is not affiliated with WhatsApp or Meta. It does not sign in to your WhatsApp
+  account and does not connect to WhatsApp servers — it only reads the notifications that
+  WhatsApp displays on your phone and that you granted access to. WhatsApp is a trademark
+  of Meta Platforms, Inc.</p>
+
+  <h2>How to delete your data</h2>
+  <ul>
+    <li>Delete a single client — this also removes their recordings, messages, notes, and
+    reminders (an in-app action, irreversible).</li>
+    <li>Delete everything — "Clear data" in the app's system settings. All data lives only
+    in the app's private storage, so this is sufficient.</li>
+    <li>Delete the recognition model — on the "Speech recognition" screen.</li>
+  </ul>
+
+  <h2>Children</h2>
+  <p>The app is not directed to children.</p>
+
+  <h2>Contact</h2>
+  <p>For data questions: <a href="mailto:support@sales-assistant.app">support@sales-assistant.app</a>.</p>
+
+  <h2>Changes</h2>
+  <p>We will announce changes to this policy by updating it at this same address and the
+  date at the top.</p>
+</main>
+
+<main id="ru" hidden>
+  <h2>Коротко</h2>
+  <p class="lead">Sales Assistant — личный помощник для работы с клиентами.
+  <strong>Всё, что вы храните в приложении, остаётся на вашем телефоне.</strong> Мы не
+  отправляем ваши данные на серверы, не собираем аналитику, не показываем рекламу и не
+  передаём ничего третьим лицам. У нас нет сервера, на который эти данные могли бы
+  уйти.</p>
+
+  <h2>Какие данные приложение хранит на телефоне</h2>
+  <ul>
+    <li><strong>Контакты клиентов</strong> — имена и номера, которые вы вводите вручную
+    или выбираете из контактов телефона.</li>
+    <li><strong>История общения</strong> — заметки, напоминания, ваши голосовые «итоги»
+    разговоров.</li>
+    <li><strong>Записи звонков</strong> — приложение <strong>не записывает звонки
+    само</strong>. Оно находит готовые записи, которые сделал встроенный диктофон вашего
+    телефона, в папке, которую вы укажете, и показывает их в карточке клиента.</li>
+    <li><strong>Расшифровки записей</strong> — текст, который приложение получает из
+    записей прямо на телефоне.</li>
+    <li><strong>Сообщения WhatsApp</strong> — если вы дали доступ к чтению уведомлений,
+    приложение сохраняет текст входящих сообщений от клиента, но <strong>только после
+    того, как вы привязали чат к конкретному клиенту</strong>. Пока чат не привязан, текст
+    сообщений не сохраняется нигде — в базе остаются только имя чата и его
+    опознаватель.</li>
+  </ul>
+
+  <h2>Зачем нужны разрешения</h2>
+  <ul>
+    <li><strong>Доступ к чтению уведомлений</strong> — чтобы сообщения из WhatsApp
+    попадали в карточку клиента. Приложение разбирает только уведомления WhatsApp, только
+    чтобы понять, кто написал. Другие уведомления не читаются.</li>
+    <li><strong>Состояние звонка</strong> — чтобы после разговора предложить надиктовать
+    итог. Приложение видит только, что звонок начался и закончился; ни номер собеседника,
+    ни звук разговора не читаются.</li>
+    <li><strong>Микрофон</strong> — только когда вы сами нажимаете «надиктовать
+    итог».</li>
+    <li><strong>Доступ к папке</strong> — только к той папке с записями, которую вы
+    выбрали; остальные файлы на телефоне приложение не видит.</li>
+    <li><strong>Интернет</strong> — используется <strong>один раз</strong>, чтобы скачать
+    модель распознавания речи. В этом запросе не передаётся ничего о вас — только загрузка
+    файла модели. Ваши записи, расшифровки и сообщения интернет <strong>не
+    используют никогда</strong>.</li>
+  </ul>
+
+  <h2>Передаём ли мы данные</h2>
+  <p>Нет. Данные не покидают телефон, не передаются третьим лицам, не продаются, не
+  используются для рекламы. Аналитики и трекеров в приложении нет.</p>
+
+  <h2>WhatsApp</h2>
+  <p>Приложение не связано с WhatsApp и Meta. Оно не входит в аккаунт WhatsApp и не
+  подключается к его серверам — оно лишь читает уведомления, которые WhatsApp показывает
+  на вашем телефоне и на чтение которых вы дали разрешение. WhatsApp — товарный знак Meta
+  Platforms, Inc.</p>
+
+  <h2>Как удалить данные</h2>
+  <ul>
+    <li>Удалить одного клиента — вместе с ним удалятся его записи, сообщения, заметки и
+    напоминания (действие в приложении, необратимо).</li>
+    <li>Удалить всё — «Стереть данные» в системных настройках приложения. Все данные лежат
+    только в приватном хранилище приложения, поэтому этого достаточно.</li>
+    <li>Удалить модель распознавания — на экране «Распознавание речи».</li>
+  </ul>
+
+  <h2>Дети</h2>
+  <p>Приложение не предназначено для детей.</p>
+
+  <h2>Контакт</h2>
+  <p>По вопросам о данных: <a href="mailto:support@sales-assistant.app">support@sales-assistant.app</a>.</p>
+
+  <h2>Изменения</h2>
+  <p>Об изменениях этой политики мы сообщим, обновив её по этому же адресу и дату
+  вверху.</p>
+</main>
+
+<footer>
+  <p>Sales Assistant · <a href="mailto:support@sales-assistant.app">support@sales-assistant.app</a></p>
+</footer>
+
+</div>
+
+<script>
+  // The policy must stay readable without scripting: both languages are in the markup and
+  // the toggle only hides one. A visitor with scripts off sees English in full.
+  var TITLES = {
+    en: { title: 'Privacy Policy', updated: 'Last updated: 22 July 2026', doc: 'Privacy Policy — Sales Assistant' },
+    ru: { title: 'Политика конфиденциальности', updated: 'Обновлено: 22 июля 2026', doc: 'Политика конфиденциальности — Sales Assistant' }
+  };
+  function show(lang) {
+    document.getElementById('en').hidden = lang !== 'en';
+    document.getElementById('ru').hidden = lang !== 'ru';
+    document.documentElement.lang = lang;
+    document.title = TITLES[lang].doc;
+    document.querySelector('[data-t="title"]').textContent = TITLES[lang].title;
+    document.querySelector('[data-t="updated"]').textContent = TITLES[lang].updated;
+    document.querySelectorAll('.langs button').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.lang === lang));
+    });
+    try { localStorage.setItem('policyLang', lang); } catch (e) { /* private mode */ }
+  }
+  document.querySelectorAll('.langs button').forEach(function (b) {
+    b.addEventListener('click', function () { show(b.dataset.lang); });
+  });
+  var stored = null;
+  try { stored = localStorage.getItem('policyLang'); } catch (e) { /* private mode */ }
+  // A Russian-speaking visitor should land on Russian without hunting for the toggle.
+  var guess = stored || ((navigator.language || 'en').slice(0, 2) === 'ru' ? 'ru' : 'en');
+  if (guess === 'ru') show('ru');
+</script>
+</body>
+</html>
