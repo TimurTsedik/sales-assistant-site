@@ -60,7 +60,7 @@
 <header>
   <p class="product">Sales Assistant</p>
   <h1 data-t="title">Privacy Policy</h1>
-  <p class="updated" data-t="updated">Last updated: 22 July 2026</p>
+  <p class="updated" data-t="updated">Last updated: 29 July 2026</p>
   <div class="langs">
     <button type="button" data-lang="en" aria-pressed="true">English</button>
     <button type="button" data-lang="ru" aria-pressed="false">Русский</button>
@@ -85,17 +85,29 @@
     in a folder you choose, and shows them in the client's card.</li>
     <li><strong>Transcripts</strong> — text the app produces from recordings, entirely on
     the phone.</li>
-    <li><strong>WhatsApp messages</strong> — if you grant notification access, the app
-    saves incoming message text from a client, but <strong>only after you link that chat
-    to a specific client</strong>. Until a chat is linked, message text is stored nowhere —
-    only the chat's name and identifier remain in the database.</li>
+    <li><strong>WhatsApp, Telegram and SMS messages</strong> — if you grant notification
+    access, the app saves incoming message text from a client. For WhatsApp and Telegram —
+    <strong>only after you link that chat to a specific client</strong>; until a chat is
+    linked, message text is stored nowhere, and only the chat's name and identifier remain
+    in the database. SMS needs no linking and asks for none: a message is saved
+    <strong>only if the sender's number belongs to exactly one of your clients</strong> at
+    the moment it arrives. Messages from any other number — marketing, verification codes,
+    strangers — are not saved.</li>
+    <li><strong>Voice messages from a client</strong> — for a linked chat the app also
+    saves the sound file itself and its transcript. The file is copied from the
+    notification into the app's private storage and stays on the phone; the transcript is
+    produced on the phone too. Until a chat is linked no sound is copied, exactly as no
+    text is stored. Short voice messages are transcribed straight away, longer ones when
+    you ask.</li>
   </ul>
 
   <h2>Why the permissions are needed</h2>
   <ul>
-    <li><strong>Notification access</strong> — so WhatsApp messages reach the client's
-    card. The app parses only WhatsApp notifications, only to tell who wrote. Other
-    notifications are not read.</li>
+    <li><strong>Notification access</strong> — so WhatsApp, Telegram and SMS messages
+    reach the client's card. The app parses only those apps' notifications, only to tell
+    who wrote. Other notifications are not read. An SMS is saved only when the sender's
+    number belongs to exactly one of your clients; anything else is not saved. SMS
+    reception works only with the Google Messages app.</li>
     <li><strong>Phone state</strong> — to offer dictating a summary after a call. The app
     only sees that a call started and ended; neither the other party's number nor the call
     audio is read.</li>
@@ -112,16 +124,18 @@
   <p>No. Data never leaves the phone, is not shared with third parties, is not sold, and
   is not used for advertising. There are no analytics or trackers in the app.</p>
 
-  <h2>WhatsApp</h2>
-  <p>The app is not affiliated with WhatsApp or Meta. It does not sign in to your WhatsApp
-  account and does not connect to WhatsApp servers — it only reads the notifications that
-  WhatsApp displays on your phone and that you granted access to. WhatsApp is a trademark
-  of Meta Platforms, Inc.</p>
+  <h2>WhatsApp and Telegram</h2>
+  <p>The app is not affiliated with WhatsApp, Meta or Telegram. It does not sign in to your
+  accounts and does not connect to their servers — it only reads the notifications that
+  those apps display on your phone and that you granted access to. WhatsApp is a trademark
+  of Meta Platforms, Inc.; Telegram is a trademark of Telegram FZ-LLC.</p>
 
   <h2>How to delete your data</h2>
   <ul>
-    <li>Delete a single client — this also removes their recordings, messages, notes, and
-    reminders (an in-app action, irreversible).</li>
+    <li>Delete a single client — this also removes their messages, notes, reminders,
+    dictated summaries, and the client's voice messages including the sound files (an
+    in-app action, irreversible). Call recordings found in your folder are not deleted:
+    those are your files, and they return to the "Inbox".</li>
     <li>Delete everything — "Clear data" in the app's system settings. All data lives only
     in the app's private storage, so this is sufficient.</li>
     <li>Delete the recognition model — on the "Speech recognition" screen.</li>
@@ -157,18 +171,28 @@
     телефона, в папке, которую вы укажете, и показывает их в карточке клиента.</li>
     <li><strong>Расшифровки записей</strong> — текст, который приложение получает из
     записей прямо на телефоне.</li>
-    <li><strong>Сообщения WhatsApp</strong> — если вы дали доступ к чтению уведомлений,
-    приложение сохраняет текст входящих сообщений от клиента, но <strong>только после
-    того, как вы привязали чат к конкретному клиенту</strong>. Пока чат не привязан, текст
-    сообщений не сохраняется нигде — в базе остаются только имя чата и его
-    опознаватель.</li>
+    <li><strong>Сообщения WhatsApp, Telegram и SMS</strong> — если вы дали доступ к чтению
+    уведомлений, приложение сохраняет текст входящих сообщений от клиента. Для WhatsApp и
+    Telegram — <strong>только после того, как вы привязали чат к конкретному
+    клиенту</strong>; пока чат не привязан, текст сообщений не сохраняется нигде, в базе
+    остаются только имя чата и его опознаватель. Для SMS привязка не нужна и не
+    спрашивается: сообщение сохраняется, <strong>только если номер отправителя принадлежит
+    ровно одному вашему клиенту</strong> на момент получения. Сообщения с любых других
+    номеров — рассылки, коды подтверждения, незнакомые люди — не сохраняются.</li>
+    <li><strong>Голосовые сообщения клиента</strong> — у привязанного чата приложение
+    сохраняет и сам звуковой файл, и его расшифровку. Файл копируется из уведомления в
+    приватное хранилище приложения и остаётся на телефоне; расшифровка делается тоже на
+    телефоне. Пока чат не привязан, звук не копируется — как не сохраняется и текст.
+    Короткие голосовые расшифровываются сразу, длинные — по вашей просьбе.</li>
   </ul>
 
   <h2>Зачем нужны разрешения</h2>
   <ul>
-    <li><strong>Доступ к чтению уведомлений</strong> — чтобы сообщения из WhatsApp
-    попадали в карточку клиента. Приложение разбирает только уведомления WhatsApp, только
-    чтобы понять, кто написал. Другие уведомления не читаются.</li>
+    <li><strong>Доступ к чтению уведомлений</strong> — чтобы сообщения из WhatsApp,
+    Telegram и SMS попадали в карточку клиента. Приложение разбирает только уведомления
+    этих мессенджеров и приложения сообщений, только чтобы понять, кто написал. Другие
+    уведомления не читаются. Приём SMS работает только с приложением Google Сообщения; с
+    другими приложениями сообщений входящие SMS не приходят вовсе.</li>
     <li><strong>Состояние звонка</strong> — чтобы после разговора предложить надиктовать
     итог. Приложение видит только, что звонок начался и закончился; ни номер собеседника,
     ни звук разговора не читаются.</li>
@@ -186,16 +210,19 @@
   <p>Нет. Данные не покидают телефон, не передаются третьим лицам, не продаются, не
   используются для рекламы. Аналитики и трекеров в приложении нет.</p>
 
-  <h2>WhatsApp</h2>
-  <p>Приложение не связано с WhatsApp и Meta. Оно не входит в аккаунт WhatsApp и не
-  подключается к его серверам — оно лишь читает уведомления, которые WhatsApp показывает
-  на вашем телефоне и на чтение которых вы дали разрешение. WhatsApp — товарный знак Meta
-  Platforms, Inc.</p>
+  <h2>WhatsApp и Telegram</h2>
+  <p>Приложение не связано ни с WhatsApp и Meta, ни с Telegram. Оно не входит в ваши
+  аккаунты и не подключается к серверам этих сервисов — оно лишь читает уведомления,
+  которые они показывают на вашем телефоне и на чтение которых вы дали разрешение.
+  WhatsApp — товарный знак Meta Platforms, Inc.; Telegram — товарный знак Telegram
+  FZ-LLC.</p>
 
   <h2>Как удалить данные</h2>
   <ul>
-    <li>Удалить одного клиента — вместе с ним удалятся его записи, сообщения, заметки и
-    напоминания (действие в приложении, необратимо).</li>
+    <li>Удалить одного клиента — вместе с ним удалятся его сообщения, заметки,
+    напоминания, надиктованные итоги и голосовые сообщения клиента, включая звуковые файлы
+    (действие в приложении, необратимо). Записи звонков, найденные в вашей папке, при этом
+    не удаляются: это ваши файлы, они возвращаются во «Входящие».</li>
     <li>Удалить всё — «Стереть данные» в системных настройках приложения. Все данные лежат
     только в приватном хранилище приложения, поэтому этого достаточно.</li>
     <li>Удалить модель распознавания — на экране «Распознавание речи».</li>
@@ -222,8 +249,8 @@
   // The policy must stay readable without scripting: both languages are in the markup and
   // the toggle only hides one. A visitor with scripts off sees English in full.
   var TITLES = {
-    en: { title: 'Privacy Policy', updated: 'Last updated: 22 July 2026', doc: 'Privacy Policy — Sales Assistant' },
-    ru: { title: 'Политика конфиденциальности', updated: 'Обновлено: 22 июля 2026', doc: 'Политика конфиденциальности — Sales Assistant' }
+    en: { title: 'Privacy Policy', updated: 'Last updated: 29 July 2026', doc: 'Privacy Policy — Sales Assistant' },
+    ru: { title: 'Политика конфиденциальности', updated: 'Обновлено: 29 июля 2026', doc: 'Политика конфиденциальности — Sales Assistant' }
   };
   function show(lang) {
     document.getElementById('en').hidden = lang !== 'en';
