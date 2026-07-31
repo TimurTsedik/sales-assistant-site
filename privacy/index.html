@@ -60,7 +60,7 @@
 <header>
   <p class="product">Sales Assistant</p>
   <h1 data-t="title">Privacy Policy</h1>
-  <p class="updated" data-t="updated">Last updated: 31 July 2026</p>
+  <p class="updated" data-t="updated">Last updated: 29 July 2026</p>
   <div class="langs">
     <button type="button" data-lang="en" aria-pressed="true">English</button>
     <button type="button" data-lang="ru" aria-pressed="false">Русский</button>
@@ -76,8 +76,8 @@
 
   <h2>What the app stores on your phone</h2>
   <ul>
-    <li><strong>Client contacts</strong> — names and numbers you enter manually, pick from
-    your phone contacts, or accept from the phone-book name suggestion described below.</li>
+    <li><strong>Client contacts</strong> — names and numbers you enter manually or pick
+    from your phone contacts.</li>
     <li><strong>Interaction history</strong> — notes, reminders, and your voice call
     summaries.</li>
     <li><strong>Call recordings</strong> — the app <strong>does not record calls
@@ -111,13 +111,6 @@
     <li><strong>Phone state</strong> — to offer dictating a summary after a call. The app
     only sees that a call started and ended; neither the other party's number nor the call
     audio is read.</li>
-    <li><strong>Contacts</strong> — only to suggest a name for a call recording whose
-    number is not yet in your client list. When you open "Assign a client" for such a
-    recording, the app asks your phone book about <strong>that one number</strong> and
-    offers the name it finds. The phone book is never read as a whole, never copied, never
-    synced, and nothing is sent anywhere. The lookup happens only while that window is
-    open; a name is written down only if you tap "create a client" — and then it is saved
-    on the phone as an ordinary client of yours, like one you typed in by hand.</li>
     <li><strong>Microphone</strong> — only when you tap "dictate a summary".</li>
     <li><strong>Folder access</strong> — only to the recordings folder you selected; the
     app does not see other files on the phone.</li>
@@ -169,8 +162,8 @@
 
   <h2>Какие данные приложение хранит на телефоне</h2>
   <ul>
-    <li><strong>Контакты клиентов</strong> — имена и номера, которые вы вводите вручную,
-    выбираете из контактов телефона или принимаете из подсказки имени, описанной ниже.</li>
+    <li><strong>Контакты клиентов</strong> — имена и номера, которые вы вводите вручную
+    или выбираете из контактов телефона.</li>
     <li><strong>История общения</strong> — заметки, напоминания, ваши голосовые «итоги»
     разговоров.</li>
     <li><strong>Записи звонков</strong> — приложение <strong>не записывает звонки
@@ -203,14 +196,6 @@
     <li><strong>Состояние звонка</strong> — чтобы после разговора предложить надиктовать
     итог. Приложение видит только, что звонок начался и закончился; ни номер собеседника,
     ни звук разговора не читаются.</li>
-    <li><strong>Контакты</strong> — только чтобы подсказать имя для записи звонка, чей
-    номер ещё не заведён у вас клиентом. Когда вы открываете для такой записи «Назначить
-    клиента», приложение спрашивает телефонную книгу про <strong>этот один номер</strong> и
-    предлагает найденное имя. Книга никогда не читается целиком, не копируется, не
-    синхронизируется, и ничего никуда не отправляется. Запрос происходит, только пока
-    открыто это окно; имя записывается, только если вы нажмёте «создать клиента» — и тогда
-    оно сохраняется на телефоне обычным вашим клиентом, как если бы вы набрали его
-    руками.</li>
     <li><strong>Микрофон</strong> — только когда вы сами нажимаете «надиктовать
     итог».</li>
     <li><strong>Доступ к папке</strong> — только к той папке с записями, которую вы
@@ -264,8 +249,8 @@
   // The policy must stay readable without scripting: both languages are in the markup and
   // the toggle only hides one. A visitor with scripts off sees English in full.
   var TITLES = {
-    en: { title: 'Privacy Policy', updated: 'Last updated: 31 July 2026', doc: 'Privacy Policy — Sales Assistant' },
-    ru: { title: 'Политика конфиденциальности', updated: 'Обновлено: 31 июля 2026', doc: 'Политика конфиденциальности — Sales Assistant' }
+    en: { title: 'Privacy Policy', updated: 'Last updated: 29 July 2026', doc: 'Privacy Policy — Sales Assistant' },
+    ru: { title: 'Политика конфиденциальности', updated: 'Обновлено: 29 июля 2026', doc: 'Политика конфиденциальности — Sales Assistant' }
   };
   function show(lang) {
     document.getElementById('en').hidden = lang !== 'en';
