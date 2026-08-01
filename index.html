@@ -188,7 +188,7 @@
       <button type="button" data-lang="en" aria-pressed="true">EN</button>
       <button type="button" data-lang="ru" aria-pressed="false">RU</button>
     </div>
-    <a class="btn btn-sm" href="https://play.google.com/store/apps/details?id=com.tsedik.salesassistant" data-i18n="navCta">Install</a>
+    <a class="btn btn-sm" href="mailto:support@sales-assistant.app?subject=Sales%20Assistant%20%E2%80%94%20notify%20me%20at%20launch" data-i18n="navCta">Notify me</a>
   </div>
 </header>
 
@@ -199,10 +199,12 @@
       <h1 class="r" data-i18n="heroTitle">Recall everything about a client 10 seconds before you call</h1>
       <p class="lead r" data-i18n="heroSub">Calls, transcripts, notes and chats in one card. Reminders keep the promised call-back from slipping. Everything stays on your phone only.</p>
       <div class="cta-row r">
-        <a class="btn" href="https://play.google.com/store/apps/details?id=com.tsedik.salesassistant" data-i18n="heroCta">Get it on Google Play</a>
+        <a class="btn" href="mailto:support@sales-assistant.app?subject=Sales%20Assistant%20%E2%80%94%20notify%20me%20at%20launch" data-i18n="heroCta">Email me when it is out</a>
         <a class="btn btn-ghost" href="#privacy" data-i18n="heroCta2">How privacy works</a>
       </div>
-      <p class="note r" data-i18n="heroNote">Android · no cloud, no analytics, no ads</p>
+      <p class="note r"><span data-i18n="heroNote">Android · no cloud, no analytics, no ads</span><br>
+        <span data-i18n="testerNote">Already in the test?</span>
+        <a href="https://play.google.com/store/apps/details?id=com.tsedik.salesassistant" data-i18n="testerLink">Open it in Google Play</a></p>
     </div>
     <div>
       <div class="phone r hero-r">
@@ -396,7 +398,7 @@
           <li><i></i><span data-i18n="pro3">Speech models downloaded to the phone</span></li>
           <li><i></i><span data-i18n="pro4">Obsidian export and every future update</span></li>
         </ul>
-        <a class="btn" href="https://play.google.com/store/apps/details?id=com.tsedik.salesassistant" data-i18n="heroCta">Get it on Google Play</a>
+        <a class="btn" href="mailto:support@sales-assistant.app?subject=Sales%20Assistant%20%E2%80%94%20notify%20me%20at%20launch" data-i18n="heroCta">Email me when it is out</a>
         <p class="fine" data-i18n="priceNote">14 days free, then monthly — or a cheaper annual plan. Billed through Google Play, cancel any time.</p>
       </div>
     </div>
@@ -430,13 +432,15 @@
 document.documentElement.classList.add('js');
 
 var RU = {
-  navCta: "Установить",
+  navCta: "Сообщить о выходе",
   eyebrow: "10 секунд до звонка",
   heroTitle: "Вспомните всё о клиенте за 10 секунд до звонка",
   heroSub: "Звонки, расшифровки, заметки и переписка — в одной карточке. Напоминания не дают забыть обещанный перезвон. Всё хранится только на вашем телефоне.",
-  heroCta: "Установить из Google Play",
+  heroCta: "Сообщить, когда выйдет",
   heroCta2: "Как с приватностью",
   heroNote: "Android · без облака, аналитики и рекламы",
+  testerNote: "Уже в тесте?",
+  testerLink: "Открыть в Google Play",
   painEyebrow: "Проблема",
   painTitle: "Перед звонком — пустота, а клиент ждёт ответа",
   pain1t: "История размазана",
@@ -528,8 +532,7 @@ var RU = {
 
   var saved = null;
   try { saved = localStorage.getItem('lang'); } catch (e) {}
-  var browserIsRu = (navigator.language || '').slice(0, 2).toLowerCase() === 'ru';
-  if ((saved || (browserIsRu ? 'ru' : 'en')) === 'ru') apply('ru');
+  if (saved === 'ru') apply('ru');
 
   buttons.forEach(function (b) {
     b.addEventListener('click', function () { apply(b.dataset.lang); });
