@@ -3,35 +3,559 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sales Assistant</title>
+<title>Sales Assistant — client memory that stays on your phone</title>
+<meta name="description" content="Calls, transcripts, notes and chats in one client card. Reminders keep the promised call-back from slipping. Everything stays on your phone — no cloud, no analytics, no ads.">
+<link rel="canonical" href="https://sales-assistant.app/">
+<link rel="icon" href="/img/icon-512.png" type="image/png">
+<link rel="apple-touch-icon" href="/img/icon-512.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sales-assistant.app/">
+<meta property="og:title" content="Sales Assistant — client memory that stays on your phone">
+<meta property="og:description" content="Calls, transcripts, notes and chats in one client card. Everything stays on your phone — no cloud, no analytics, no ads.">
+<meta property="og:image" content="https://sales-assistant.app/img/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#F3F5F2">
 <style>
-  :root {
-    --bg: #ffffff; --fg: #1a1c1e; --muted: #5b6167; --rule: #e2e5e9; --accent: #1f6feb;
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#F3F5F2; --surface:#FAFBF8; --ink:#0D1727; --ink-2:#152238;
+    --muted:#52667B; --line:#E8ECE8; --line-2:#D1D8D4;
+    --pad:32px;
   }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #14161a; --fg: #e6e8ea; --muted: #a0a7ae; --rule: #2a2e34; --accent: #6ea8fe; }
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:Roboto,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
   }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: var(--fg);
-    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    display: flex; min-height: 100vh; align-items: center; justify-content: center;
+  a{color:#293C5D;text-decoration:none}
+  a:hover{color:var(--ink-2);text-decoration:underline}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1200px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+
+  /* header */
+  .top{position:sticky;top:0;z-index:30;background:rgba(250,251,248,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .top .wrap{display:flex;align-items:center;gap:20px;padding-top:14px;padding-bottom:14px}
+  .brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+  .brand img{width:32px;height:32px;border-radius:10px}
+  .brand span{font-size:16px;font-weight:600;letter-spacing:-.2px}
+  .langs{display:flex;background:var(--surface);border:1px solid var(--line-2);border-radius:20px;padding:3px;gap:2px}
+  .langs button{font:inherit;font-size:13px;font-weight:600;letter-spacing:.2px;border:0;cursor:pointer;padding:7px 14px;border-radius:16px;background:transparent;color:var(--muted);transition:background .2s,color .2s}
+  .langs button[aria-pressed="true"]{background:var(--ink-2);color:var(--bg)}
+
+  .btn{display:inline-block;background:var(--ink-2);color:#FAFBF8;font-size:16px;font-weight:600;padding:16px 28px;border-radius:14px;transition:transform .2s,background .2s;text-align:center}
+  .btn:hover{background:var(--ink);color:#FAFBF8;text-decoration:none;transform:translateY(-2px)}
+  .btn-sm{font-size:14px;padding:11px 20px;border-radius:12px;white-space:nowrap}
+  .btn-sm:hover{transform:none}
+  .btn-ghost{background:var(--surface);border:1px solid var(--line-2);color:var(--ink-2);padding:15px 24px}
+  .btn-ghost:hover{background:var(--surface);color:var(--ink-2);border-color:var(--muted)}
+
+  /* section furniture */
+  .eyebrow{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#293C5D}
+  .eyebrow i{width:14px;height:2px;border-radius:2px;background:currentColor;flex:0 0 auto;display:block}
+  h2{margin-top:16px;font-size:36px;line-height:1.16;font-weight:600;letter-spacing:-.9px;max-width:660px;text-wrap:pretty}
+  .section{padding-top:88px;padding-bottom:88px}
+  .band{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .band .section{padding-top:72px;padding-bottom:72px}
+
+  /* hero */
+  .hero{background:oklch(.965 .022 85);border-bottom:1px solid oklch(.9 .03 85)}
+  .hero .wrap{padding-top:80px;padding-bottom:96px;display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);gap:72px;align-items:center}
+  .pill{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:oklch(.45 .11 45);background:oklch(.93 .05 55);padding:7px 12px;border-radius:999px}
+  .pill i{width:6px;height:6px;border-radius:50%;background:oklch(.6 .15 45);display:block;animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.82)}}
+  h1{margin-top:20px;font-size:58px;line-height:1.04;font-weight:600;letter-spacing:-1.8px;text-wrap:pretty}
+  .lead{margin-top:22px;font-size:19px;line-height:1.62;color:var(--muted);max-width:540px;text-wrap:pretty}
+  .cta-row{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .note{margin-top:18px;font-size:13px;font-weight:500;color:var(--muted)}
+  .phone{width:min(340px,100%);aspect-ratio:340/722;background:#000;border-radius:42px;padding:8px;box-shadow:0 34px 70px -24px rgba(13,23,39,.45),0 0 0 2px #23272b;margin:0 auto}
+  .phone img{width:100%;height:100%;object-fit:cover;border-radius:35px;background:var(--line)}
+
+  /* cards */
+  .grid-3{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .grid-6{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{border-radius:12px;padding:22px 22px 24px;transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 34px -18px rgba(13,23,39,.32)}
+  .card h3{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:600;letter-spacing:-.2px}
+  .card h3 i{width:8px;height:8px;border-radius:50%;background:currentColor;flex:0 0 auto;display:block}
+  .card p{margin-top:10px;font-size:15px;line-height:1.6;text-wrap:pretty}
+  .feat{padding:26px 24px 28px;display:flex;flex-direction:column;gap:10px}
+  .feat .kicker{font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+  .feat h3{font-size:21px;font-weight:600;letter-spacing:-.35px;color:var(--ink);display:block}
+  .feat p{margin:0;font-size:15px;line-height:1.62}
+  .chips{margin-top:2px;display:flex;flex-wrap:wrap;gap:6px}
+  .chips span{font-size:12px;font-weight:600;border-radius:999px;padding:5px 10px}
+
+  /* gallery */
+  .gallery{background:oklch(.96 .022 195);border-top:1px solid oklch(.9 .03 195);border-bottom:1px solid oklch(.9 .03 195)}
+  .shots{margin-top:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .shot{display:flex;flex-direction:column;gap:14px}
+  .shot .frame{aspect-ratio:1080/2340;border-radius:22px;overflow:hidden;background:var(--line)}
+  .shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+  .shot:hover img{transform:scale(1.03)}
+  .shot figcaption{display:flex;align-items:flex-start;gap:8px;font-size:14px;font-weight:600;color:var(--ink-2);line-height:1.4}
+  .shot figcaption i{width:7px;height:7px;border-radius:50%;background:currentColor;flex:0 0 auto;margin-top:6px;display:block}
+
+  /* privacy block */
+  .privacy{background:var(--ink-2);border-radius:20px;padding:64px 56px}
+  .privacy .eyebrow{color:var(--line-2)}
+  .privacy h2{color:#FAFBF8;font-size:38px;letter-spacing:-1px;max-width:700px}
+  .privacy .cols{margin-top:44px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+  .privacy .cols div{display:flex;flex-direction:column;gap:10px;padding-top:18px;border-top:3px solid}
+  .privacy h3{font-size:17px;font-weight:600;letter-spacing:-.2px;color:#FAFBF8}
+  .privacy p{font-size:14px;line-height:1.6;color:var(--line-2);text-wrap:pretty}
+  .privacy .more{margin-top:36px;display:inline-block;font-size:15px;font-weight:600;color:#FAFBF8;border-bottom:1px solid rgba(250,251,248,.45);padding-bottom:2px}
+  .privacy .more:hover{color:#fff;text-decoration:none;border-color:#fff}
+
+  /* pricing */
+  .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .plan{background:oklch(.96 .03 150);border:1px solid oklch(.88 .06 150);border-radius:16px;padding:34px 32px}
+  .plan .tier{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:oklch(.42 .1 150)}
+  .plan .amount{display:flex;align-items:baseline;gap:8px;margin-top:6px}
+  .plan .amount b{font-size:44px;font-weight:600;letter-spacing:-1.4px}
+  .plan .amount span{font-size:15px;font-weight:600;color:var(--muted)}
+  .plan ul{margin-top:18px;list-style:none;display:flex;flex-direction:column;gap:12px}
+  .plan li{display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.5}
+  .plan li i{width:7px;height:7px;border-radius:50%;background:oklch(.58 .14 150);margin-top:7px;flex:0 0 auto;display:block}
+  .plan hr{border:0;border-top:1px solid oklch(.88 .06 150);margin:26px 0}
+  .plan .btn{margin-top:26px;display:block;font-size:16px;padding:15px 24px;border-radius:12px}
+  .plan .fine{margin-top:12px;font-size:12px;line-height:1.55;color:var(--muted);text-align:center}
+  .plan .free-line{margin-top:6px;font-size:15px;font-weight:600}
+
+  /* disclaimers + footer */
+  .disc{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;padding-top:64px}
+  .disc p{border-left:2px solid var(--line-2);padding:4px 0 4px 18px;font-size:13px;line-height:1.65;color:var(--muted);text-wrap:pretty}
+  footer .wrap{padding-top:56px;padding-bottom:64px}
+  .foot{border-top:1px solid var(--line);padding-top:24px;display:flex;flex-wrap:wrap;gap:20px;align-items:center}
+  .foot .brand{flex:1;min-width:200px}
+  .foot .brand img{width:28px;height:28px;border-radius:9px}
+  .foot .brand span{font-size:14px}
+  .foot nav{display:flex;flex-wrap:wrap;gap:20px;font-size:13px;font-weight:500;color:var(--muted)}
+  .foot .copy{font-size:12px;color:var(--muted)}
+
+  /* reveal on scroll (only when JS is on) */
+  .js .r{opacity:0;transform:translateY(16px);will-change:opacity,transform}
+  .js .r.hero-r{transform:translateY(26px) scale(.985)}
+  .js .r.on{opacity:1;transform:none;transition:opacity .62s cubic-bezier(.16,1,.3,1),transform .62s cubic-bezier(.16,1,.3,1)}
+
+  @media (max-width:1000px){
+    :root{--pad:24px}
+    .hero .wrap{grid-template-columns:minmax(0,1fr);gap:48px;padding-top:56px;padding-bottom:64px}
+    .lead{max-width:none}
+    h1{font-size:44px;letter-spacing:-1.2px}
+    h2{font-size:30px;letter-spacing:-.6px}
+    .grid-3,.grid-6{grid-template-columns:repeat(2,1fr)}
+    .shots{grid-template-columns:repeat(2,1fr);gap:20px}
+    .privacy{padding:44px 32px}
+    .privacy h2{font-size:30px}
+    .privacy .cols{grid-template-columns:repeat(2,1fr);gap:24px}
+    .price-grid{grid-template-columns:1fr;gap:32px}
+    .section{padding-top:64px;padding-bottom:64px}
   }
-  .wrap { max-width: 32rem; padding: 2rem 1.25rem; }
-  h1 { font-size: 2rem; margin: 0 0 .75rem; }
-  p { color: var(--muted); margin: 0 0 1.5rem; }
-  nav a { color: var(--accent); margin-right: 1.25rem; }
+  @media (max-width:640px){
+    :root{--pad:18px}
+    .top .wrap{gap:12px}
+    .brand span{font-size:15px}
+    .btn-sm{font-size:13px;padding:10px 14px}
+    h1{font-size:34px;letter-spacing:-.8px;margin-top:16px}
+    .lead{font-size:17px;margin-top:18px}
+    .cta-row .btn{width:100%}
+    h2{font-size:26px}
+    .grid-3,.grid-6{grid-template-columns:1fr}
+    .privacy{padding:34px 22px;border-radius:16px}
+    .privacy h2{font-size:26px}
+    .privacy .cols{grid-template-columns:1fr;gap:20px}
+    .disc{grid-template-columns:1fr;padding-top:44px}
+    .plan{padding:26px 22px}
+    .section{padding-top:48px;padding-bottom:48px}
+    .band .section{padding-top:48px;padding-bottom:48px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .js .r{opacity:1;transform:none}
+  }
 </style>
 </head>
 <body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <img src="/img/icon-512.png" alt="" width="32" height="32">
+      <span>Sales Assistant</span>
+    </div>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+    </div>
+    <a class="btn btn-sm" href="https://play.google.com/store/apps/details?id=com.tsedik.salesassistant" data-i18n="navCta">Install</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="pill r"><i></i><span data-i18n="eyebrow">10 seconds before the call</span></div>
+      <h1 class="r" data-i18n="heroTitle">Recall everything about a client 10 seconds before you call</h1>
+      <p class="lead r" data-i18n="heroSub">Calls, transcripts, notes and chats in one card. Reminders keep the promised call-back from slipping. Everything stays on your phone only.</p>
+      <div class="cta-row r">
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.tsedik.salesassistant" data-i18n="heroCta">Get it on Google Play</a>
+        <a class="btn btn-ghost" href="#privacy" data-i18n="heroCta2">How privacy works</a>
+      </div>
+      <p class="note r" data-i18n="heroNote">Android · no cloud, no analytics, no ads</p>
+    </div>
+    <div>
+      <div class="phone r hero-r">
+        <img src="/img/client-card.jpg" alt="Client card: what you agreed on, the next step, and the history of calls and messages" width="738" height="1600" fetchpriority="high">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap section">
+    <div class="eyebrow" style="color:oklch(.5 .13 25)"><i></i><span data-i18n="painEyebrow">The problem</span></div>
+    <h2 class="r" data-i18n="painTitle">You open the dialer with nothing, and the client expects answers</h2>
+    <div class="grid-3">
+      <article class="card r" style="background:oklch(.955 .03 25);border:1px solid oklch(.9 .045 25)">
+        <h3 style="color:oklch(.6 .16 25)"><i></i><span style="color:var(--ink)" data-i18n="pain1t">History is scattered</span></h3>
+        <p style="color:oklch(.45 .05 25)" data-i18n="pain1x">Dialer, recorder, WhatsApp, Telegram and your own memory. Assembling the picture in a minute before a call is impossible.</p>
+      </article>
+      <article class="card r" style="background:oklch(.955 .03 60);border:1px solid oklch(.9 .045 60)">
+        <h3 style="color:oklch(.6 .16 60)"><i></i><span style="color:var(--ink)" data-i18n="pain2t">Promises get lost</span></h3>
+        <p style="color:oklch(.45 .05 60)" data-i18n="pain2x">“I’ll call you Thursday” lives in your head until the first busy day — then the client goes to whoever did call.</p>
+      </article>
+      <article class="card r" style="background:oklch(.955 .03 285);border:1px solid oklch(.9 .045 285)">
+        <h3 style="color:oklch(.6 .16 285)"><i></i><span style="color:var(--ink)" data-i18n="pain3t">CRM misses it</span></h3>
+        <p style="color:oklch(.45 .05 285)" data-i18n="pain3x">Corporate CRM never sees calls from your personal mobile or chats in messengers. The real conversation stays outside the system.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="eyebrow"><i style="background:oklch(.6 .15 285)"></i><span data-i18n="featEyebrow">Features</span></div>
+  <h2 class="r" data-i18n="featTitle">A salesperson’s memory, not another CRM</h2>
+  <div class="grid-6">
+
+    <article class="card feat r" style="background:oklch(.955 .032 195);border:1px solid oklch(.9 .05 195)">
+      <div class="kicker" style="color:oklch(.48 .11 195)" data-i18n="f1k">Client card</div>
+      <h3 data-i18n="f1t">One screen per client</h3>
+      <p style="color:oklch(.44 .045 195)" data-i18n="f1x">Name, numbers, notes, the full timeline and the next step. Open it and you already remember what you agreed on.</p>
+      <div class="chips" style="color:oklch(.42 .09 195)">
+        <span style="background:oklch(.92 .045 195)" data-i18n="f1c1">Phones</span>
+        <span style="background:oklch(.92 .045 195)" data-i18n="f1c2">Notes</span>
+        <span style="background:oklch(.92 .045 195)" data-i18n="f1c3">Timeline</span>
+        <span style="background:oklch(.92 .045 195)" data-i18n="f1c4">Next step</span>
+      </div>
+    </article>
+
+    <article class="card feat r" style="background:oklch(.955 .032 150);border:1px solid oklch(.9 .05 150)">
+      <div class="kicker" style="color:oklch(.46 .11 150)" data-i18n="f2k">Calls</div>
+      <h3 data-i18n="f2t">Recordings find their card</h3>
+      <p style="color:oklch(.43 .045 150)" data-i18n="f2x">Point at your recorder folder once: the app reads what the recorder saved — number, name and time — and files each recording into the right card in one tap.</p>
+      <div class="chips" style="color:oklch(.42 .09 150)">
+        <span style="background:oklch(.92 .045 150)" data-i18n="f2c1">Recorder folder</span>
+        <span style="background:oklch(.92 .045 150)" data-i18n="f2c2">Matched by file</span>
+        <span style="background:oklch(.92 .045 150)" data-i18n="f2c3">One-tap linking</span>
+      </div>
+    </article>
+
+    <article class="card feat r" style="background:oklch(.955 .032 285);border:1px solid oklch(.9 .05 285)">
+      <div class="kicker" style="color:oklch(.48 .12 285)" data-i18n="f3k">Transcripts</div>
+      <h3 data-i18n="f3t">Speech to text on device</h3>
+      <p style="color:oklch(.44 .05 285)" data-i18n="f3x">Recognition runs on the phone, with no audio sent anywhere. Read the text or jump through the timings in the player.</p>
+      <div class="chips" style="color:oklch(.42 .09 285)">
+        <span style="background:oklch(.92 .045 285)" data-i18n="f3c1">On device</span>
+        <span style="background:oklch(.92 .045 285)" data-i18n="f3c2">Search in text</span>
+        <span style="background:oklch(.92 .045 285)" data-i18n="f3c3">Timings</span>
+      </div>
+    </article>
+
+    <article class="card feat r" style="background:oklch(.955 .032 60);border:1px solid oklch(.9 .05 60)">
+      <div class="kicker" style="color:oklch(.47 .11 60)" data-i18n="f4k">Reminders</div>
+      <h3 data-i18n="f4t">When, and what for</h3>
+      <p style="color:oklch(.44 .05 60)" data-i18n="f4x">When it fires you get a context screen with the latest agreements, then call, message or snooze in one tap.</p>
+      <div class="chips" style="color:oklch(.42 .09 60)">
+        <span style="background:oklch(.92 .045 60)" data-i18n="f4c1">Context screen</span>
+        <span style="background:oklch(.92 .045 60)" data-i18n="f4c2">Call</span>
+        <span style="background:oklch(.92 .045 60)" data-i18n="f4c3">Message</span>
+        <span style="background:oklch(.92 .045 60)" data-i18n="f4c4">Snooze</span>
+      </div>
+    </article>
+
+    <article class="card feat r" style="background:oklch(.955 .032 25);border:1px solid oklch(.9 .05 25)">
+      <div class="kicker" style="color:oklch(.5 .13 25)" data-i18n="f5k">Channels</div>
+      <h3 data-i18n="f5t">WhatsApp, Telegram, SMS</h3>
+      <p style="color:oklch(.45 .05 25)" data-i18n="f5x">Messages you allow the app to read land in the client’s card. Each one shows its source — where history is complete and where partial.</p>
+      <div class="chips" style="color:oklch(.42 .09 25)">
+        <span style="background:oklch(.92 .045 25)" data-i18n="f5c1">WhatsApp</span>
+        <span style="background:oklch(.92 .045 25)" data-i18n="f5c2">Telegram</span>
+        <span style="background:oklch(.92 .045 25)" data-i18n="f5c3">SMS</span>
+        <span style="background:oklch(.92 .045 25)" data-i18n="f5c4">Source shown</span>
+      </div>
+    </article>
+
+    <article class="card feat r" style="background:oklch(.955 .032 300);border:1px solid oklch(.9 .05 300)">
+      <div class="kicker" style="color:oklch(.48 .13 300)" data-i18n="f6k">Obsidian export</div>
+      <h3 data-i18n="f6t">Your archive in Markdown, not in someone’s database</h3>
+      <p style="color:oklch(.44 .05 300)" data-i18n="f6x">One tap exports into a folder you pick: a file per client, a file per call, note and message. Plain Markdown — Obsidian opens it instantly, and even without it this is just text that stays yours after you delete the app.</p>
+      <div class="chips" style="color:oklch(.42 .09 300)">
+        <span style="background:oklch(.92 .045 300)" data-i18n="f6c1">Markdown</span>
+        <span style="background:oklch(.92 .045 300)" data-i18n="f6c2">Clients</span>
+        <span style="background:oklch(.92 .045 300)" data-i18n="f6c3">Interactions</span>
+        <span style="background:oklch(.92 .045 300)" data-i18n="f6c4">Attachments</span>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="wrap section">
+    <div class="eyebrow" style="color:oklch(.45 .11 195)"><i style="background:oklch(.55 .13 195)"></i><span data-i18n="galEyebrow">Screens</span></div>
+    <h2 class="r" data-i18n="galTitle">How it looks on the phone</h2>
+    <div class="shots">
+      <figure class="shot r">
+        <div class="frame" style="border:2px solid oklch(.82 .07 60)">
+          <img src="/img/today.jpg" alt="Today screen: overdue and upcoming contacts" width="738" height="1600" loading="lazy">
+        </div>
+        <figcaption><i style="color:oklch(.6 .15 60)"></i><span data-i18n="cap1">Today: what is overdue and who to contact</span></figcaption>
+      </figure>
+      <figure class="shot r">
+        <div class="frame" style="border:2px solid oklch(.82 .07 195)">
+          <img src="/img/clients.jpg" alt="Client list with search by name or number" width="738" height="1600" loading="lazy">
+        </div>
+        <figcaption><i style="color:oklch(.6 .15 195)"></i><span data-i18n="cap2">Clients, searchable by name or number</span></figcaption>
+      </figure>
+      <figure class="shot r">
+        <div class="frame" style="border:2px solid oklch(.82 .07 285)">
+          <img src="/img/history.jpg" alt="Client history: notes, calls and messages in one thread" width="738" height="1600" loading="lazy">
+        </div>
+        <figcaption><i style="color:oklch(.6 .15 285)"></i><span data-i18n="cap3">History: notes, calls and chats in one thread</span></figcaption>
+      </figure>
+      <figure class="shot r">
+        <div class="frame" style="border:2px solid oklch(.82 .07 150)">
+          <img src="/img/transcript.jpg" alt="Call transcript with a player and search in text" width="738" height="1600" loading="lazy">
+        </div>
+        <figcaption><i style="color:oklch(.6 .15 150)"></i><span data-i18n="cap4">Call transcript with a player</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section" id="privacy">
+  <div class="privacy">
+    <div class="eyebrow"><i></i><span data-i18n="privEyebrow">Privacy</span></div>
+    <h2 class="r" data-i18n="privTitle">Privacy here is architecture, not a promise</h2>
+    <div class="cols">
+      <div class="r" style="border-color:oklch(.72 .14 60)">
+        <h3 data-i18n="priv1t">No cloud</h3>
+        <p data-i18n="priv1x">Data sits in the app’s private storage on your phone. We simply do not run a server.</p>
+      </div>
+      <div class="r" style="border-color:oklch(.72 .13 195)">
+        <h3 data-i18n="priv2t">No analytics</h3>
+        <p data-i18n="priv2x">No trackers, no ad SDKs, no event collection. There is nobody to look at your data.</p>
+      </div>
+      <div class="r" style="border-color:oklch(.72 .13 150)">
+        <h3 data-i18n="priv3t">Internet once</h3>
+        <p data-i18n="priv3x">Only to download the speech-recognition model. After that everything works offline.</p>
+      </div>
+      <div class="r" style="border-color:oklch(.74 .13 300)">
+        <h3 data-i18n="priv4t">Take it all as Markdown</h3>
+        <p data-i18n="priv4x">Obsidian-format export and confirmable deletion, any time, with no support ticket.</p>
+      </div>
+    </div>
+    <a class="more" href="/privacy" data-i18n="privLink">Read the full privacy policy</a>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap section">
+    <div class="price-grid">
+      <div>
+        <div class="eyebrow"><i style="background:oklch(.58 .14 150)"></i><span data-i18n="priceEyebrow">Pricing</span></div>
+        <h2 class="r" data-i18n="priceTitle">Free for the everyday. Pro for the voice work.</h2>
+        <p class="lead" data-i18n="priceSub">Client cards, notes, reminders and messaging are free, with no card and no time limit. Pro adds everything built on speech recognition. The data is yours either way — leave any time with the whole history as a folder of Markdown.</p>
+      </div>
+      <div class="plan r">
+        <div class="tier" data-i18n="planFreeTier">Free</div>
+        <div class="free-line" data-i18n="planFreePrice">No card, no time limit</div>
+        <ul>
+          <li><i></i><span data-i18n="free1">Client cards, notes and history</span></li>
+          <li><i></i><span data-i18n="free2">Reminders and the Today screen</span></li>
+          <li><i></i><span data-i18n="free3">Messaging in WhatsApp, Telegram and SMS</span></li>
+          <li><i></i><span data-i18n="free4">Everything already transcribed stays readable</span></li>
+        </ul>
+        <hr>
+        <div class="tier" data-i18n="planProTier">Pro</div>
+        <div class="amount"><b>$9.99</b><span data-i18n="perMonth">per month</span></div>
+        <ul>
+          <li><i></i><span data-i18n="pro1">Voice summary after a call — dictate it, get text</span></li>
+          <li><i></i><span data-i18n="pro2">Call recordings picked up and transcribed on device</span></li>
+          <li><i></i><span data-i18n="pro3">Speech models downloaded to the phone</span></li>
+          <li><i></i><span data-i18n="pro4">Obsidian export and every future update</span></li>
+        </ul>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.tsedik.salesassistant" data-i18n="heroCta">Get it on Google Play</a>
+        <p class="fine" data-i18n="priceNote">14 days free, then monthly — or a cheaper annual plan. Billed through Google Play, cancel any time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="wrap">
-  <h1>Sales Assistant</h1>
-  <p>A personal assistant for working with clients. Everything you keep in the app stays
-  on your phone.</p>
-  <nav>
-    <a href="/privacy">Privacy Policy</a>
-    <a href="mailto:support@sales-assistant.app">support@sales-assistant.app</a>
-  </nav>
+  <div class="disc">
+    <p data-i18n="disc1">The app does not record calls. It locates recordings made by your phone’s built-in recorder, in a folder you choose, and files them into the right client card. Complying with call-recording laws is the user’s responsibility.</p>
+    <p data-i18n="disc2">This app is not affiliated with WhatsApp, Telegram or Meta. WhatsApp is a trademark of Meta Platforms, Inc. Messages reach a card only through permissions you enable yourself.</p>
+  </div>
 </div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="brand">
+        <img src="/img/icon-512.png" alt="" width="28" height="28">
+        <span>Sales Assistant</span>
+      </div>
+      <nav>
+        <a href="/privacy" data-i18n="linkPrivacy">Privacy policy</a>
+        <a href="mailto:support@sales-assistant.app">support@sales-assistant.app</a>
+      </nav>
+      <div class="copy">© 2026</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+
+var RU = {
+  navCta: "Установить",
+  eyebrow: "10 секунд до звонка",
+  heroTitle: "Вспомните всё о клиенте за 10 секунд до звонка",
+  heroSub: "Звонки, расшифровки, заметки и переписка — в одной карточке. Напоминания не дают забыть обещанный перезвон. Всё хранится только на вашем телефоне.",
+  heroCta: "Установить из Google Play",
+  heroCta2: "Как с приватностью",
+  heroNote: "Android · без облака, аналитики и рекламы",
+  painEyebrow: "Проблема",
+  painTitle: "Перед звонком — пустота, а клиент ждёт ответа",
+  pain1t: "История размазана",
+  pain1x: "Звонилка, диктофон, WhatsApp, Telegram и своя память. Собрать картину перед звонком за минуту невозможно.",
+  pain2t: "Обещания теряются",
+  pain2x: "«Перезвоню в четверг» живёт в голове до первого занятого дня — и клиент уходит к тому, кто перезвонил.",
+  pain3t: "CRM не про это",
+  pain3x: "Корпоративная CRM не видит звонков с личного мобильного и переписки в мессенджерах. Живое общение остаётся вне системы.",
+  featEyebrow: "Возможности",
+  featTitle: "Память продажника, а не ещё одна CRM",
+  f1k: "Карточка",
+  f1t: "Один экран на клиента",
+  f1x: "Имя, номера, заметки, вся хронология общения и следующий шаг. Открыли — и уже помните, о чём договаривались.",
+  f1c1: "Телефоны", f1c2: "Заметки", f1c3: "Хронология", f1c4: "Следующий шаг",
+  f2k: "Звонки",
+  f2t: "Записи сами находят карточку",
+  f2x: "Укажите папку рекордера один раз: приложение разбирает то, что сохранил диктофон — номер, имя и время — и кладёт запись в нужную карточку в один тап.",
+  f2c1: "Папка рекордера", f2c2: "Разбор по файлу", f2c3: "Привязка в тап",
+  f3k: "Расшифровка",
+  f3t: "Разговор в текст на телефоне",
+  f3x: "Распознавание работает на устройстве, без отправки аудио куда-либо. Читайте текст или прыгайте по таймингам в плеере.",
+  f3c1: "На устройстве", f3c2: "Поиск по тексту", f3c3: "Тайминги",
+  f4k: "Напоминания",
+  f4t: "Время и зачем связаться",
+  f4x: "По сработке — экран контекста с последними договорённостями, затем звонок, сообщение или «отложить» в один тап.",
+  f4c1: "Экран контекста", f4c2: "Позвонить", f4c3: "Написать", f4c4: "Отложить",
+  f5k: "Каналы",
+  f5t: "WhatsApp, Telegram, SMS",
+  f5x: "Сообщения, которые вы разрешили читать, сами попадают в карточку клиента. У каждого видно источник — где история полная, а где частичная.",
+  f5c1: "WhatsApp", f5c2: "Telegram", f5c3: "SMS", f5c4: "Источник видно",
+  f6k: "Экспорт в Obsidian",
+  f6t: "Ваш архив в Markdown, а не в чужой базе",
+  f6x: "Выгрузка по кнопке в выбранную папку: файл на клиента, файл на каждый звонок, заметку и сообщение. Обычный Markdown — Obsidian открывает сразу, но и без него это просто текст, который останется у вас даже после удаления приложения.",
+  f6c1: "Markdown", f6c2: "Clients", f6c3: "Interactions", f6c4: "Attachments",
+  galEyebrow: "Экраны",
+  galTitle: "Как это выглядит на телефоне",
+  cap1: "Сегодня: что просрочено и с чем связаться",
+  cap2: "Клиенты и поиск по имени или номеру",
+  cap3: "История: заметки, звонки и сообщения подряд",
+  cap4: "Расшифровка звонка с плеером",
+  privEyebrow: "Приватность",
+  privTitle: "Приватность здесь не обещание, а архитектура",
+  priv1t: "Нет облака",
+  priv1x: "Данные лежат в приватном хранилище приложения на телефоне. Сервера у нас просто нет.",
+  priv2t: "Нет аналитики",
+  priv2x: "Ни трекеров, ни рекламных SDK, ни сбора событий. Смотреть на ваши данные некому.",
+  priv3t: "Интернет — один раз",
+  priv3x: "Только чтобы скачать модель распознавания речи. Дальше всё работает офлайн.",
+  priv4t: "Заберёте всё в Markdown",
+  priv4x: "Экспорт в формате Obsidian и подтверждаемое удаление — в любой момент, без переписки с поддержкой.",
+  privLink: "Читать политику приватности целиком",
+  priceEyebrow: "Подписка",
+  priceTitle: "Основное — бесплатно. Платно — работа с голосом.",
+  priceSub: "Карточки, заметки, напоминания и переписка бесплатны — без карты и без срока. Pro добавляет всё, что построено на распознавании речи. Данные ваши в любом случае: уйдёте — заберёте всю историю папкой Markdown-файлов.",
+  planFreeTier: "Бесплатно",
+  planFreePrice: "Без карты и без срока",
+  free1: "Карточки клиентов, заметки и история",
+  free2: "Напоминания и экран «Сегодня»",
+  free3: "Переписка в WhatsApp, Telegram и SMS",
+  free4: "Всё уже расшифрованное остаётся доступным",
+  planProTier: "Pro",
+  perMonth: "в месяц",
+  pro1: "Голосовой итог после звонка — надиктовали, получили текст",
+  pro2: "Записи звонков сами подхватываются и расшифровываются на телефоне",
+  pro3: "Речевые модели скачиваются на устройство",
+  pro4: "Экспорт в Obsidian и все будущие обновления",
+  priceNote: "14 дней бесплатно, дальше помесячно — или дешевле за год. Оплата через Google Play, отмена в любой момент.",
+  disc1: "Приложение само звонки не записывает. Оно находит записи, сделанные встроенным диктофоном вашего телефона, в указанной вами папке, и раскладывает их по карточкам клиентов. Соблюдение законов о записи разговоров — ответственность пользователя.",
+  disc2: "Приложение не связано с WhatsApp, Telegram и Meta. WhatsApp — товарный знак Meta Platforms, Inc. Сообщения попадают в карточку только через разрешения, которые вы включаете сами.",
+  linkPrivacy: "Политика приватности"
+};
+
+(function () {
+  var nodes = document.querySelectorAll('[data-i18n]');
+  var buttons = document.querySelectorAll('.langs button');
+  var EN = {};
+  nodes.forEach(function (el) { EN[el.dataset.i18n] = el.textContent; });
+
+  function apply(lang) {
+    var dict = lang === 'ru' ? RU : EN;
+    nodes.forEach(function (el) {
+      var value = dict[el.dataset.i18n];
+      if (value) el.textContent = value;
+    });
+    document.documentElement.lang = lang;
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.lang === lang)); });
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem('lang'); } catch (e) {}
+  var browserIsRu = (navigator.language || '').slice(0, 2).toLowerCase() === 'ru';
+  if ((saved || (browserIsRu ? 'ru' : 'en')) === 'ru') apply('ru');
+
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () { apply(b.dataset.lang); });
+  });
+
+  var revealed = document.querySelectorAll('.r');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+    revealed.forEach(function (el) { el.classList.add('on'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      var index = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+      el.style.transitionDelay = Math.min(index, 5) * 70 + 'ms';
+      el.classList.add('on');
+      io.unobserve(el);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+  revealed.forEach(function (el) {
+    if (el.getBoundingClientRect().top < window.innerHeight) { el.classList.add('on'); return; }
+    io.observe(el);
+  });
+})();
+</script>
 </body>
 </html>
