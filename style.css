@@ -159,3 +159,32 @@ footer .wrap{padding-top:56px;padding-bottom:64px}
   *{animation:none!important;transition:none!important}
   .js .r{opacity:1;transform:none}
 }
+
+/* страница-объяснение: узкая колонка текста */
+.doc{max-width:760px;margin:0 auto;padding-top:64px;padding-bottom:88px}
+.doc h1{font-size:52px;line-height:1.1;letter-spacing:-1.6px;font-weight:600;text-wrap:pretty}
+.doc .lede{margin-top:22px;font-size:21px;line-height:1.62;color:var(--muted);text-wrap:pretty}
+.doc h2{margin-top:56px;font-size:29px;line-height:1.2;letter-spacing:-.6px;max-width:none}
+.doc h3{margin-top:30px;font-size:19px;font-weight:600;letter-spacing:-.2px}
+.doc p{margin-top:16px;font-size:17px;line-height:1.7;text-wrap:pretty}
+.doc ul{margin-top:16px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.doc li{position:relative;padding-left:22px;font-size:17px;line-height:1.65;text-wrap:pretty}
+.doc li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;
+  border-radius:50%;background:oklch(.6 .15 45)}
+.doc .check{margin-top:24px;background:oklch(.96 .03 150);border:1px solid oklch(.88 .06 150);
+  border-radius:14px;padding:22px 24px}
+.doc .check h3{margin-top:0;color:oklch(.35 .09 150)}
+.doc .check p{margin-top:10px;font-size:16px}
+.doc .limits{background:oklch(.955 .03 60);border:1px solid oklch(.9 .045 60);
+  border-radius:14px;padding:26px 26px 28px;margin-top:24px}
+.doc .limits h2{margin-top:0}
+.doc dl{margin-top:20px}
+.doc dt{margin-top:22px;font-size:17px;font-weight:600;letter-spacing:-.1px}
+.doc dd{margin-top:6px;margin-left:0;font-size:16px;line-height:1.65;color:var(--muted)}
+.doc .back{margin-top:56px;font-size:16px;font-weight:600}
+@media (max-width:640px){
+  .doc{padding-top:40px;padding-bottom:56px}
+  .doc h1{font-size:34px;letter-spacing:-.9px}
+  .doc .lede{font-size:18px}
+  .doc h2{font-size:24px}
+}

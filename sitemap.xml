@@ -23,6 +23,26 @@
   </url>
 
   <url>
+    <loc>https://sales-assistant.app/how-privacy-works/</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sales-assistant.app/how-privacy-works/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://sales-assistant.app/ru/how-privacy-works/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sales-assistant.app/how-privacy-works/"/>
+  </url>
+
+  <url>
+    <loc>https://sales-assistant.app/ru/how-privacy-works/</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sales-assistant.app/how-privacy-works/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://sales-assistant.app/ru/how-privacy-works/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sales-assistant.app/how-privacy-works/"/>
+  </url>
+
+  <url>
     <loc>https://sales-assistant.app/privacy/</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>yearly</changefreq>

@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How privacy works in Sales Assistant</title>
+<meta name="description" content="Why the app has no server, the one time it uses the internet, and three checks you can run yourself instead of taking our word for it.">
+<link rel="canonical" href="https://sales-assistant.app/how-privacy-works/">
+<link rel="alternate" hreflang="en" href="https://sales-assistant.app/how-privacy-works/">
+<link rel="alternate" hreflang="ru" href="https://sales-assistant.app/ru/how-privacy-works/">
+<link rel="alternate" hreflang="x-default" href="https://sales-assistant.app/how-privacy-works/">
+<link rel="icon" href="/img/icon-512.png" type="image/png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sales-assistant.app/how-privacy-works/">
+<meta property="og:locale" content="en">
+<meta property="og:title" content="How privacy works in Sales Assistant">
+<meta property="og:description" content="Not promises but checks you can run: turn on airplane mode, look at the data usage, open the exported files.">
+<meta property="og:image" content="https://sales-assistant.app/img/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F3F5F2">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "How privacy works in Sales Assistant",
+  "description": "Why the app has no server, the one time it uses the internet, and three checks the reader can run themselves.",
+  "inLanguage": "en",
+  "url": "https://sales-assistant.app/how-privacy-works/",
+  "author": {
+    "@type": "Person",
+    "name": "Timur Tsedik",
+    "url": "https://github.com/TimurTsedik",
+    "sameAs": "https://github.com/TimurTsedik"
+  },
+  "about": {
+    "@type": "MobileApplication",
+    "name": "Sales Assistant",
+    "operatingSystem": "Android",
+    "applicationCategory": "BusinessApplication",
+    "url": "https://sales-assistant.app/"
+  }
+}
+</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <img src="/img/icon-512.png" alt="" width="32" height="32">
+      <span>Sales Assistant</span>
+    </div>
+    <nav class="langs" aria-label="Language">
+      <a href="/how-privacy-works/" hreflang="en" lang="en" aria-current="true">EN</a>
+      <a href="/ru/how-privacy-works/" hreflang="ru" lang="ru">RU</a>
+    </nav>
+    <a class="btn btn-sm" href="/">Front page</a>
+  </div>
+</header>
+
+<main class="wrap doc">
+
+  <h1>How privacy works here</h1>
+  <p class="lede">Everybody writes the same things about privacy, and none of it can
+  normally be checked. So this page is not promises but mechanics: where things are kept,
+  where the internet is used, and three things you can verify yourself without taking
+  our word for any of it.</p>
+
+  <h2>Three checks that take a minute</h2>
+  <p>These first, because everything else on this page is words, while these are facts
+  you get on your own phone.</p>
+
+  <div class="check">
+    <h3>1. Turn on airplane mode</h3>
+    <p>After the speech model has been downloaded once, the app works fully offline.
+    Cards, notes, reminders, transcription of recordings — all of it keeps working with
+    no network. If data were going to a server, airplane mode would break the app.</p>
+  </div>
+
+  <div class="check">
+    <h3>2. Look at the data usage</h3>
+    <p>Android settings → apps → Sales Assistant → mobile data. You will see traffic
+    while the speech model downloads, and next to nothing after that. No background
+    chatter, no telemetry being sent.</p>
+  </div>
+
+  <div class="check">
+    <h3>3. Export your history and open the files</h3>
+    <p>Export writes everything into a folder you choose as plain Markdown: a file per
+    client, a file per call, note and message. Open them in any text editor. That is all
+    of your data, in a form we can neither take back nor lock.</p>
+  </div>
+
+  <h2>There is no server — that is architecture, not a policy</h2>
+  <p>"We do not look at your data" implies the data sits somewhere and someone could
+  look at it. Here it is different: the product has no server side. There is nowhere to
+  look and nobody to look.</p>
+  <p>That cuts against us too: we cannot restore your history if you lose the phone.
+  That is why the app has export — it is your insurance, not ours.</p>
+
+  <h2>The one time the app uses the internet</h2>
+  <p>The app goes online for exactly one thing: to download the speech recognition model.
+  The model is Whisper, downloaded from <span>huggingface.co</span>. It happens once;
+  after that recognition runs on the phone itself and audio is never transmitted.</p>
+  <p>There are no other addresses in the app. The WhatsApp and Telegram links you see in
+  a client card are not network calls — they tell the phone to open the corresponding app,
+  exactly as if you had tapped the link yourself.</p>
+
+  <h2>Where things are kept</h2>
+  <dl>
+    <dt>Call recordings</dt>
+    <dd>The app does not record calls. It finds the files your phone's own recorder made,
+    in a folder you point it at, and makes its own copy. The copy exists so the recording
+    does not vanish when you clean out the recorder's folder. It lives in the app's
+    private storage, where other apps have no access. Delete a client and its copy goes
+    with it. Uninstall the app and everything goes.</dd>
+
+    <dt>The original recordings</dt>
+    <dd>Stay where the recorder left them. The app copies rather than moves, and never
+    deletes files that belong to other apps. If you delete a client and want the recording
+    gone everywhere, you have to delete the original yourself.</dd>
+
+    <dt>Transcripts, notes, cards, reminders</dt>
+    <dd>In the app's private storage on the phone.</dd>
+
+    <dt>Messages from messengers</dt>
+    <dd>Reach the card through notification access, which you switch on yourself. The text
+    is stored on the phone, next to the rest of that client's history.</dd>
+  </dl>
+
+  <h2>Permissions, one by one</h2>
+  <dl>
+    <dt>Microphone</dt>
+    <dd>Only for the voice summary: you say the outcome after a call, the app turns it
+    into text. Refuse it and you type the summary instead.</dd>
+
+    <dt>Phone state</dt>
+    <dd>To notice that a call has ended and offer to record the summary. Refuse it and
+    summaries are added by hand.</dd>
+
+    <dt>Notifications</dt>
+    <dd>To show reminders. Without it reminders are only visible inside the app.</dd>
+
+    <dt>Notification access</dt>
+    <dd>This is how messages from WhatsApp, Telegram and SMS reach a client card.
+    A separate permission, switched on by hand in system settings. Leave it off and the
+    app still works, there is simply no conversation in the card.</dd>
+
+    <dt>Exact alarms and start on boot</dt>
+    <dd>So a reminder fires on time and survives a restart of the phone.</dd>
+
+    <dt>Internet</dt>
+    <dd>To download the speech model. Once.</dd>
+  </dl>
+
+  <h2>What the app never asks for</h2>
+  <p>This is arguably more telling than the list above.</p>
+  <ul>
+    <li><strong>Access to your storage.</strong> Not broad access, not any access. You pick
+    the recordings folder through a system dialog and hand the app exactly that one folder —
+    it can reach nothing else.</li>
+    <li><strong>Access to your contacts.</strong> The app holds no address-book permission
+    at all. When you add a client, the system contact picker opens and the app receives
+    only the person you picked.</li>
+    <li><strong>Call log and SMS history.</strong> The app does not read your call history.</li>
+  </ul>
+
+  <h2>Android backups</h2>
+  <p>Android can, without the developer doing anything, send an app's data into a Google
+  Drive backup. For an app that keeps recordings of client conversations, that would
+  contradict everything above.</p>
+  <p>So automatic backup is switched off: <span>allowBackup=false</span> in the manifest.
+  Your cards, notes and recordings do not travel to Google's cloud.</p>
+
+  <h2>No analytics, no ads</h2>
+  <p>The app contains no analytics, crash-reporting or advertising libraries. Not
+  "disabled" — not present: no Firebase, no Crashlytics, no counters. The honest flip side
+  is that we cannot see where the app crashes, and only learn about it from your emails.</p>
+
+  <div class="limits">
+    <h2>What this does not protect you from</h2>
+    <p>A page that only says good things reads like an advert. So, the limits.</p>
+    <ul>
+      <li><strong>Notification access is broad by nature.</strong> Android cannot hand an
+      app the notifications of one messenger only — the system shows a listener all of them.
+      Our app discards anything that did not come from the messengers you configured, on the
+      very first line, but the permission you grant is still a broad one. That is the price
+      of having conversations land in the card, and you are entitled to refuse it.</li>
+      <li><strong>An unlocked phone in someone else's hands.</strong> If a person is holding
+      your unlocked phone, they see everything you see. No architecture helps with that —
+      a screen lock does.</li>
+      <li><strong>Originals outside the app.</strong> We answer for our copy. The file
+      sitting in the recorder's folder is the recorder's business.</li>
+      <li><strong>The legality of recording calls.</strong> The app does not record calls,
+      but it files away recordings your phone made. Complying with local call-recording law
+      stays with you.</li>
+    </ul>
+  </div>
+
+  <p class="back"><a href="/privacy/">Read the privacy policy</a> ·
+  <a href="/">Back to the front page</a></p>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="brand">
+        <img src="/img/icon-512.png" alt="" width="28" height="28">
+        <span>Sales Assistant</span>
+      </div>
+      <nav>
+        <a href="/privacy/">Privacy policy</a>
+        <a href="mailto:support@sales-assistant.app">support@sales-assistant.app</a>
+      </nav>
+      <div class="copy">© 2026</div>
+    </div>
+    <p class="by">Built by <a href="https://github.com/TimurTsedik" rel="me">Timur Tsedik</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>
