@@ -101,8 +101,16 @@
 
   <h2>The one time the app uses the internet</h2>
   <p>The app goes online for exactly one thing: to download the speech recognition model.
-  The model is Whisper, downloaded from <span>huggingface.co</span>. It happens once;
-  after that recognition runs on the phone itself and audio is never transmitted.</p>
+  It is OpenAI's Whisper in the whisper.cpp build, pulled from
+  <span>huggingface.co/ggerganov/whisper.cpp</span> — the official repository, published by
+  the author of whisper.cpp, under the MIT licence. It downloads once; after that
+  recognition runs on the phone itself and audio is never transmitted.</p>
+  <p>Settings offer five models, a ladder by how much your phone can take: from
+  <span>tiny</span> at 32 MB to <span>large-v3</span> at 1.08 GB. Worth knowing if you
+  are downloading over mobile data.</p>
+  <p>Each model ships with a checksum inside the app, and the downloaded file is verified
+  against it. That guards against more than a corrupt download: the checksum is baked into
+  the app rather than arriving with the file, so the model cannot be swapped in transit.</p>
   <p>There are no other addresses in the app. The WhatsApp and Telegram links you see in
   a client card are not network calls — they tell the phone to open the corresponding app,
   exactly as if you had tapped the link yourself.</p>
