@@ -23,6 +23,7 @@
 <meta property="og:image:alt" content="Sales Assistant: одна карточка клиента со звонками, расшифровками, заметками и перепиской">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#F3F5F2">
+<link rel="preload" as="image" href="/img/client-card-ru.webp" fetchpriority="high">
 <link rel="stylesheet" href="/style.css">
 <script type="application/ld+json">
 {
@@ -104,7 +105,11 @@
     </div>
     <div>
       <div class="phone r hero-r">
-        <img src="/img/client-card-ru.webp" alt="Карточка клиента: о чём договорились, следующий шаг и история звонков и сообщений" width="738" height="1600" fetchpriority="high">
+        <video class="hero-vid" poster="/img/client-card-ru.webp" width="738" height="1600"
+             muted loop playsinline preload="none" aria-label="Карточка клиента: о чём договорились, следующий шаг и история звонков и сообщений">
+          <source src="/img/hero-ru.mp4" type="video/mp4">
+          <img src="/img/client-card-ru.webp" alt="Карточка клиента: о чём договорились, следующий шаг и история звонков и сообщений" width="738" height="1600">
+        </video>
       </div>
     </div>
   </div>
@@ -328,6 +333,18 @@
   // together on purpose: nothing on this page may stay invisible because a visitor never
   // scrolled, a viewport was short, or the observer never fired.
   document.documentElement.classList.add('js');
+
+  // Ролик в шапке запускаем из скрипта, а не атрибутом autoplay: так браузер не
+  // качает его тем, кто просил меньше движения или включил экономию трафика.
+  // Им остаётся постер — тот же кадр, что был раньше картинкой.
+  var vid = document.querySelector('.hero-vid');
+  if (vid) {
+    var save = (navigator.connection || {}).saveData === true;
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && !save) {
+      vid.preload = 'auto';
+      vid.play().catch(function () { /* браузер отказал в автозапуске — останется постер */ });
+    }
+  }
   setTimeout(showAll, 2500);
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
