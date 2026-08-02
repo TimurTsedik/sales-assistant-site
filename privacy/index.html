@@ -4,6 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy — Sales Assistant</title>
+<meta name="description" content="What Sales Assistant keeps on your phone, why each permission is needed, and how to delete everything. No server, no analytics, no third parties.">
+<link rel="canonical" href="https://sales-assistant.app/privacy/">
+<link rel="icon" href="/img/icon-512.png" type="image/png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sales-assistant.app/privacy/">
+<meta property="og:title" content="Privacy Policy — Sales Assistant">
+<meta property="og:description" content="What the app keeps on your phone, why each permission is needed, and how to delete everything.">
+<meta property="og:image" content="https://sales-assistant.app/img/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   :root {
     --bg: #ffffff;
@@ -240,7 +249,7 @@
 </main>
 
 <footer>
-  <p>Sales Assistant · <a href="mailto:support@sales-assistant.app">support@sales-assistant.app</a></p>
+  <p>Sales Assistant · <a href="https://github.com/TimurTsedik" rel="me">Timur Tsedik</a> · <a href="mailto:support@sales-assistant.app">support@sales-assistant.app</a></p>
 </footer>
 
 </div>
@@ -269,8 +278,11 @@
   });
   var stored = null;
   try { stored = localStorage.getItem('policyLang'); } catch (e) { /* private mode */ }
+  // ?lang= wins over everything: the Russian landing links here and must arrive in Russian
+  // even on a phone whose browser reports another language.
+  var asked = (location.search.match(/[?&]lang=(en|ru)/) || [])[1];
   // A Russian-speaking visitor should land on Russian without hunting for the toggle.
-  var guess = stored || ((navigator.language || 'en').slice(0, 2) === 'ru' ? 'ru' : 'en');
+  var guess = asked || stored || ((navigator.language || 'en').slice(0, 2) === 'ru' ? 'ru' : 'en');
   if (guess === 'ru') show('ru');
 </script>
 </body>

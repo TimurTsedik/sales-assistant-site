@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sales Assistant — вся история клиента остаётся в телефоне</title>
+<meta name="description" content="Звонки, расшифровки, заметки и переписка в одной карточке клиента. Напоминания не дают забыть перезвон. Без облака, аналитики и рекламы.">
+<link rel="canonical" href="https://sales-assistant.app/ru/">
+<link rel="alternate" hreflang="en" href="https://sales-assistant.app/">
+<link rel="alternate" hreflang="ru" href="https://sales-assistant.app/ru/">
+<link rel="alternate" hreflang="x-default" href="https://sales-assistant.app/">
+<link rel="icon" href="/img/icon-512.png" type="image/png">
+<link rel="apple-touch-icon" href="/img/icon-512.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sales-assistant.app/ru/">
+<meta property="og:locale" content="ru">
+<meta property="og:locale:alternate" content="en">
+<meta property="og:title" content="Sales Assistant — вся история клиента остаётся в телефоне">
+<meta property="og:description" content="Звонки, расшифровки, заметки и переписка в одной карточке клиента. Всё хранится только на вашем телефоне — без облака, аналитики и рекламы.">
+<meta property="og:image" content="https://sales-assistant.app/img/og-cover-ru.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sales Assistant: одна карточка клиента со звонками, расшифровками, заметками и перепиской">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F3F5F2">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Sales Assistant",
+  "url": "https://sales-assistant.app/ru/",
+  "inLanguage": ["en", "ru"],
+  "operatingSystem": "Android",
+  "applicationCategory": "BusinessApplication",
+  "description": "Звонки, расшифровки, заметки и переписка в одной карточке клиента. Напоминания не дают забыть обещанный перезвон. Всё хранится на телефоне: без облака, аналитики и рекламы.",
+  "image": "https://sales-assistant.app/img/og-cover-ru.jpg",
+  "screenshot": [
+    "https://sales-assistant.app/img/client-card.jpg",
+    "https://sales-assistant.app/img/today.jpg",
+    "https://sales-assistant.app/img/clients.jpg",
+    "https://sales-assistant.app/img/history.jpg",
+    "https://sales-assistant.app/img/transcript.jpg"
+  ],
+  "featureList": [
+    "Одна карточка на клиента: телефоны, заметки, хронология и следующий шаг",
+    "Записи встроенного диктофона сами раскладываются по карточкам клиентов",
+    "Распознавание речи на устройстве, аудио никуда не уходит",
+    "Напоминания открываются вместе с последними договорённостями",
+    "Сообщения WhatsApp, Telegram и SMS собираются в карточке клиента",
+    "Выгрузка всей истории в обычный Markdown"
+  ],
+  "privacyPolicy": "https://sales-assistant.app/privacy/?lang=ru",
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "USD",
+    "lowPrice": "0",
+    "highPrice": "9.99",
+    "offerCount": "2",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Free",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Client cards, notes, history, reminders, messaging and Markdown export, with no card and no time limit."
+      },
+      {
+        "@type": "Offer",
+        "name": "Pro",
+        "price": "9.99",
+        "priceCurrency": "USD",
+        "description": "Everything built on speech recognition: voice summaries, call transcripts and voice messages turned into text.",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "9.99",
+          "priceCurrency": "USD",
+          "billingIncrement": 1,
+          "unitCode": "MON"
+        }
+      }
+    ]
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Timur Tsedik",
+    "url": "https://github.com/TimurTsedik",
+    "sameAs": "https://github.com/TimurTsedik"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Timur Tsedik",
+    "url": "https://github.com/TimurTsedik"
+  }
+}
+</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <img src="/img/icon-512.png" alt="" width="32" height="32">
+      <span>Sales Assistant</span>
+    </div>
+    <nav class="langs" aria-label="Язык">
+      <a href="/" hreflang="en" lang="en">EN</a>
+      <a href="/ru/" hreflang="ru" lang="ru" aria-current="true">RU</a>
+    </nav>
+    <a class="btn btn-sm" href="mailto:support@sales-assistant.app?subject=Sales%20Assistant%20%E2%80%94%20notify%20me%20at%20launch">Сообщить о выходе</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="pill r"><i></i><span>10 секунд до звонка</span></div>
+      <h1 class="r">Вспомните всё о клиенте за 10 секунд до звонка</h1>
+      <p class="lead r">Звонки, расшифровки, заметки и переписка — в одной карточке. Напоминания не дают забыть обещанный перезвон. Всё хранится только на вашем телефоне.</p>
+      <div class="cta-row r">
+        <a class="btn" href="mailto:support@sales-assistant.app?subject=Sales%20Assistant%20%E2%80%94%20notify%20me%20at%20launch">Сообщить, когда выйдет</a>
+        <a class="btn btn-ghost" href="#privacy">Как с приватностью</a>
+      </div>
+      <p class="note r"><span>Android · без облака, аналитики и рекламы</span><br>
+        <span>Уже в тесте?</span>
+        <a href="https://play.google.com/store/apps/details?id=com.tsedik.salesassistant">Открыть в Google Play</a></p>
+    </div>
+    <div>
+      <div class="phone r hero-r">
+        <img src="/img/client-card.jpg" alt="Карточка клиента: о чём договорились, следующий шаг и история звонков и сообщений" width="738" height="1600" fetchpriority="high">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap section">
+    <div class="eyebrow" style="color:oklch(.5 .13 25)"><i></i><span>Проблема</span></div>
+    <h2 class="r">Перед звонком — пустота, а клиент ждёт ответа</h2>
+    <div class="grid-3">
+      <article class="card r" style="background:oklch(.955 .03 25);border:1px solid oklch(.9 .045 25)">
+        <h3 style="color:oklch(.6 .16 25)"><i></i><span style="color:var(--ink)">История размазана</span></h3>
+        <p style="color:oklch(.45 .05 25)">Звонилка, диктофон, WhatsApp, Telegram и своя память. Собрать картину перед звонком за минуту невозможно.</p>
+      </article>
+      <article class="card r" style="background:oklch(.955 .03 60);border:1px solid oklch(.9 .045 60)">
+        <h3 style="color:oklch(.6 .16 60)"><i></i><span style="color:var(--ink)">Обещания теряются</span></h3>
+        <p style="color:oklch(.45 .05 60)">«Перезвоню в четверг» живёт в голове до первого занятого дня — и клиент уходит к тому, кто перезвонил.</p>
+      </article>
+      <article class="card r" style="background:oklch(.955 .03 285);border:1px solid oklch(.9 .045 285)">
+        <h3 style="color:oklch(.6 .16 285)"><i></i><span style="color:var(--ink)">CRM не про это</span></h3>
+        <p style="color:oklch(.45 .05 285)">Корпоративная CRM не видит звонков с личного мобильного и переписки в мессенджерах. Живое общение остаётся вне системы.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="eyebrow"><i style="background:oklch(.6 .15 285)"></i><span>Возможности</span></div>
+  <h2 class="r">Память продажника, а не ещё одна CRM</h2>
+  <div class="grid-6">
+
+    <article class="card feat r" style="background:oklch(.955 .032 195);border:1px solid oklch(.9 .05 195)">
+      <div class="kicker" style="color:oklch(.48 .11 195)">Карточка</div>
+      <h3>Один экран на клиента</h3>
+      <p style="color:oklch(.44 .045 195)">Имя, номера, заметки, вся хронология общения и следующий шаг. Открыли — и уже помните, о чём договаривались.</p>
+      <div class="chips" style="color:oklch(.42 .09 195)">
+        <span style="background:oklch(.92 .045 195)">Телефоны</span>
+        <span style="background:oklch(.92 .045 195)">Заметки</span>
+        <span style="background:oklch(.92 .045 195)">Хронология</span>
+        <span style="background:oklch(.92 .045 195)">Следующий шаг</span>
+      </div>
+    </article>
+
+    <article class="card feat r" style="background:oklch(.955 .032 150);border:1px solid oklch(.9 .05 150)">
+      <div class="kicker" style="color:oklch(.46 .11 150)">Звонки</div>
+      <h3>Записи сами находят карточку</h3>
+      <p style="color:oklch(.43 .045 150)">Укажите папку рекордера один раз: приложение разбирает то, что сохранил диктофон — номер, имя и время — и кладёт запись в нужную карточку в один тап.</p>
+      <div class="chips" style="color:oklch(.42 .09 150)">
+        <span style="background:oklch(.92 .045 150)">Папка рекордера</span>
+        <span style="background:oklch(.92 .045 150)">Разбор по файлу</span>
+        <span style="background:oklch(.92 .045 150)">Привязка в тап</span>
+      </div>
+    </article>
+
+    <article class="card feat r" style="background:oklch(.955 .032 285);border:1px solid oklch(.9 .05 285)">
+      <div class="kicker" style="color:oklch(.48 .12 285)">Расшифровка</div>
+      <h3>Разговор в текст на телефоне</h3>
+      <p style="color:oklch(.44 .05 285)">Распознавание работает на устройстве, без отправки аудио куда-либо. Читайте текст или прыгайте по таймингам в плеере.</p>
+      <div class="chips" style="color:oklch(.42 .09 285)">
+        <span style="background:oklch(.92 .045 285)">На устройстве</span>
+        <span style="background:oklch(.92 .045 285)">Поиск по тексту</span>
+        <span style="background:oklch(.92 .045 285)">Тайминги</span>
+      </div>
+    </article>
+
+    <article class="card feat r" style="background:oklch(.955 .032 60);border:1px solid oklch(.9 .05 60)">
+      <div class="kicker" style="color:oklch(.47 .11 60)">Напоминания</div>
+      <h3>Время и зачем связаться</h3>
+      <p style="color:oklch(.44 .05 60)">По сработке — экран контекста с последними договорённостями, затем звонок, сообщение или «отложить» в один тап.</p>
+      <div class="chips" style="color:oklch(.42 .09 60)">
+        <span style="background:oklch(.92 .045 60)">Экран контекста</span>
+        <span style="background:oklch(.92 .045 60)">Позвонить</span>
+        <span style="background:oklch(.92 .045 60)">Написать</span>
+        <span style="background:oklch(.92 .045 60)">Отложить</span>
+      </div>
+    </article>
+
+    <article class="card feat r" style="background:oklch(.955 .032 25);border:1px solid oklch(.9 .05 25)">
+      <div class="kicker" style="color:oklch(.5 .13 25)">Каналы</div>
+      <h3>WhatsApp, Telegram, SMS</h3>
+      <p style="color:oklch(.45 .05 25)">Сообщения, которые вы разрешили читать, сами попадают в карточку клиента. У каждого видно источник — где история полная, а где частичная.</p>
+      <div class="chips" style="color:oklch(.42 .09 25)">
+        <span style="background:oklch(.92 .045 25)">WhatsApp</span>
+        <span style="background:oklch(.92 .045 25)">Telegram</span>
+        <span style="background:oklch(.92 .045 25)">SMS</span>
+        <span style="background:oklch(.92 .045 25)">Источник видно</span>
+      </div>
+    </article>
+
+    <article class="card feat r" style="background:oklch(.955 .032 300);border:1px solid oklch(.9 .05 300)">
+      <div class="kicker" style="color:oklch(.48 .13 300)">Экспорт в Obsidian</div>
+      <h3>Ваш архив в Markdown, а не в чужой базе</h3>
+      <p style="color:oklch(.44 .05 300)">Выгрузка по кнопке в выбранную папку: файл на клиента, файл на каждый звонок, заметку и сообщение. Обычный Markdown — Obsidian открывает сразу, но и без него это просто текст, который останется у вас даже после удаления приложения.</p>
+      <div class="chips" style="color:oklch(.42 .09 300)">
+        <span style="background:oklch(.92 .045 300)">Markdown</span>
+        <span style="background:oklch(.92 .045 300)">Clients</span>
+        <span style="background:oklch(.92 .045 300)">Interactions</span>
+        <span style="background:oklch(.92 .045 300)">Attachments</span>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="wrap section">
+    <div class="eyebrow" style="color:oklch(.45 .11 195)"><i style="background:oklch(.55 .13 195)"></i><span>Экраны</span></div>
+    <h2 class="r">Как это выглядит на телефоне</h2>
+    <div class="shots">
+      <figure class="shot r">
+        <div class="frame" style="border:2px solid oklch(.82 .07 60)">
+          <img src="/img/today.jpg" alt="Экран «Сегодня»: просроченные и ближайшие контакты" width="738" height="1600" loading="lazy">
+        </div>
+        <figcaption><i style="color:oklch(.6 .15 60)"></i><span>Сегодня: что просрочено и с чем связаться</span></figcaption>
+      </figure>
+      <figure class="shot r">
+        <div class="frame" style="border:2px solid oklch(.82 .07 195)">
+          <img src="/img/clients.jpg" alt="Список клиентов с поиском по имени или номеру" width="738" height="1600" loading="lazy">
+        </div>
+        <figcaption><i style="color:oklch(.6 .15 195)"></i><span>Клиенты и поиск по имени или номеру</span></figcaption>
+      </figure>
+      <figure class="shot r">
+        <div class="frame" style="border:2px solid oklch(.82 .07 285)">
+          <img src="/img/history.jpg" alt="История клиента: заметки, звонки и сообщения в одной ленте" width="738" height="1600" loading="lazy">
+        </div>
+        <figcaption><i style="color:oklch(.6 .15 285)"></i><span>История: заметки, звонки и сообщения подряд</span></figcaption>
+      </figure>
+      <figure class="shot r">
+        <div class="frame" style="border:2px solid oklch(.82 .07 150)">
+          <img src="/img/transcript.jpg" alt="Расшифровка звонка с плеером и поиском по тексту" width="738" height="1600" loading="lazy">
+        </div>
+        <figcaption><i style="color:oklch(.6 .15 150)"></i><span>Расшифровка звонка с плеером</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section" id="privacy">
+  <div class="privacy">
+    <div class="eyebrow"><i></i><span>Приватность</span></div>
+    <h2 class="r">Приватность здесь не обещание, а архитектура</h2>
+    <div class="cols">
+      <div class="r" style="border-color:oklch(.72 .14 60)">
+        <h3>Нет облака</h3>
+        <p>Данные лежат в приватном хранилище приложения на телефоне. Сервера у нас просто нет.</p>
+      </div>
+      <div class="r" style="border-color:oklch(.72 .13 195)">
+        <h3>Нет аналитики</h3>
+        <p>Ни трекеров, ни рекламных SDK, ни сбора событий. Смотреть на ваши данные некому.</p>
+      </div>
+      <div class="r" style="border-color:oklch(.72 .13 150)">
+        <h3>Интернет — один раз</h3>
+        <p>Только чтобы скачать модель распознавания речи. Дальше всё работает офлайн.</p>
+      </div>
+      <div class="r" style="border-color:oklch(.74 .13 300)">
+        <h3>Заберёте всё в Markdown</h3>
+        <p>Экспорт в формате Obsidian и подтверждаемое удаление — в любой момент, без переписки с поддержкой.</p>
+      </div>
+    </div>
+    <a class="more" href="/privacy/?lang=ru">Читать политику приватности целиком</a>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap section">
+    <div class="price-grid">
+      <div>
+        <div class="eyebrow"><i style="background:oklch(.58 .14 150)"></i><span>Подписка</span></div>
+        <h2 class="r">Основное — бесплатно. Платно — работа с голосом.</h2>
+        <p class="lead">Карточки, заметки, напоминания и переписка бесплатны — без карты и без срока. Pro добавляет всё, что построено на распознавании речи. Данные ваши в любом случае: уйдёте — заберёте всю историю папкой Markdown-файлов.</p>
+      </div>
+      <div class="plan r">
+        <div class="tier">Бесплатно</div>
+        <div class="free-line">Без карты и без срока</div>
+        <p class="fine" style="margin-top:8px;text-align:left">Первые 14 дней после установки открыто всё, карта не нужна.</p>
+        <ul>
+          <li><i></i><span>Карточки клиентов, заметки и история</span></li>
+          <li><i></i><span>Напоминания и экран «Сегодня»</span></li>
+          <li><i></i><span>Переписка в WhatsApp, Telegram и SMS</span></li>
+          <li><i></i><span>Записи звонков сами ложатся в нужную карточку</span></li>
+          <li><i></i><span>Выгрузка всей истории в Markdown в любой момент</span></li>
+          <li><i></i><span>Всё, что уже стало текстом, остаётся доступным</span></li>
+        </ul>
+        <hr>
+        <div class="tier">Pro</div>
+        <div class="amount"><b>$9.99</b><span>в месяц</span></div>
+        <ul>
+          <li><i></i><span>Голосовой итог после звонка — надиктовали, получили текст</span></li>
+          <li><i></i><span>Новые записи звонков превращаются в текст на телефоне</span></li>
+          <li><i></i><span>Голосовые из WhatsApp и Telegram превращаются в текст</span></li>
+          <li><i></i><span>Речевые модели скачиваются на устройство</span></li>
+        </ul>
+        <a class="btn" href="mailto:support@sales-assistant.app?subject=Sales%20Assistant%20%E2%80%94%20notify%20me%20at%20launch">Сообщить, когда выйдет</a>
+        <p class="fine">Или $89.99 в год. Оплата через Google Play, отмена в любой момент.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="disc">
+    <p>Приложение само звонки не записывает. Оно находит записи, сделанные встроенным диктофоном вашего телефона, в указанной вами папке, и раскладывает их по карточкам клиентов. Соблюдение законов о записи разговоров — ответственность пользователя.</p>
+    <p>Приложение не связано с WhatsApp, Telegram и Meta. WhatsApp — товарный знак Meta Platforms, Inc. Сообщения попадают в карточку только через разрешения, которые вы включаете сами.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="brand">
+        <img src="/img/icon-512.png" alt="" width="28" height="28">
+        <span>Sales Assistant</span>
+      </div>
+      <nav>
+        <a href="/privacy/?lang=ru">Политика приватности</a>
+        <a href="mailto:support@sales-assistant.app">support@sales-assistant.app</a>
+      </nav>
+      <div class="copy">© 2026</div>
+    </div>
+    <p class="by">Автор — <a href="https://github.com/TimurTsedik" rel="me">Timur Tsedik</a>.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var revealed = document.querySelectorAll('.r');
+  function showAll() {
+    for (var i = 0; i < revealed.length; i++) revealed[i].classList.add('on');
+  }
+
+  // The class that hides the blocks and the timer that guarantees they come back are set
+  // together on purpose: nothing on this page may stay invisible because a visitor never
+  // scrolled, a viewport was short, or the observer never fired.
+  document.documentElement.classList.add('js');
+  setTimeout(showAll, 2500);
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+    showAll();
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      var index = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+      el.style.transitionDelay = Math.min(index, 5) * 70 + 'ms';
+      el.classList.add('on');
+      io.unobserve(el);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+  revealed.forEach(function (el) {
+    if (el.getBoundingClientRect().top < window.innerHeight) { el.classList.add('on'); return; }
+    io.observe(el);
+  });
+})();
+</script>
+</body>
+</html>
